@@ -324,15 +324,15 @@ public class HotelManagementGame2 extends JFrame {
         int repChange;
         String result;
 
-        if (room.type == guest.wantedType) {                 // perfect match
+        if (room.type == guest.wantedType) {                
             pay = TYPE_PRICES[room.type] * guest.nights;
             repChange = 3;
             result = "Perfect match!";
-        } else if (room.type > guest.wantedType) {           // better room than wanted
-            pay = TYPE_PRICES[guest.wantedType] * guest.nights;   // guest pays for what they asked
+        } else if (room.type > guest.wantedType) {           
+            pay = TYPE_PRICES[guest.wantedType] * guest.nights;  
             repChange = 5;
             result = "Free upgrade - the guest is thrilled!";
-        } else {                                             // worse room than wanted
+        } else {                                             
             pay = (int) (TYPE_PRICES[room.type] * 0.7 * guest.nights);
             repChange = -3;
             result = "Guest wanted a better room and paid less.";
@@ -463,7 +463,7 @@ public class HotelManagementGame2 extends JFrame {
             }
             room.nightsLeft--;
             if (room.nightsLeft <= 0) {
-                int tip = reputation * (1 + random.nextInt(3));   // better reputation = bigger tip
+                int tip = reputation * (1 + random.nextInt(3));   
                 money += tip;
                 log(room.guest.name + " checked out of Room " + room.number + " (tip PHP " + tip + ").");
                 room.state = State.DIRTY;
@@ -516,7 +516,7 @@ public class HotelManagementGame2 extends JFrame {
     void addNewGuests() {
         int count = 1 + random.nextInt(2 + marketingLevel);
         if (reputation >= 70) {
-            count++;   // good reputation brings extra guests
+            count++;   
         }
         for (int i = 0; i < count; i++) {
             if (queue.size() < MAX_QUEUE) {
@@ -543,7 +543,7 @@ public class HotelManagementGame2 extends JFrame {
         Guest guest = new Guest();
         guest.name = NAMES[random.nextInt(NAMES.length)];
         int roll = random.nextInt(10);
-        guest.wantedType = roll < 5 ? 0 : roll < 9 ? 1 : 2;   // mostly Single, rarely Deluxe
+        guest.wantedType = roll < 5 ? 0 : roll < 9 ? 1 : 2;   
         guest.nights = 1 + random.nextInt(4);
         guest.patience = 3;
         return guest;
